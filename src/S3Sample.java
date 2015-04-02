@@ -29,6 +29,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
@@ -83,6 +84,7 @@ public class S3Sample {
         ClientConfiguration clientConfig = new ClientConfiguration();
         clientConfig.setProtocol(Protocol.HTTPS);
         AmazonS3 s3 = new AmazonS3Client(credentials,clientConfig);
+        s3.setS3ClientOptions(new S3ClientOptions().withPathStyleAccess(true));
 
 
         if(!END_POINT.equals("")){
