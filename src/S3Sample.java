@@ -31,6 +31,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
@@ -95,7 +96,7 @@ public class S3Sample {
 
         //String bucketName = "my-first-s3-bucket-" + UUID.randomUUID();
         String bucketName = BUCKET_NAME;
-        String key = "MyObjectKeytest";
+        String key = "MyObjectKeylabs";
 
         System.out.println("===========================================");
         System.out.println("Getting Started with Amazon S3");
@@ -125,6 +126,10 @@ public class S3Sample {
 
             System.out.println("Uploading a new object to S3 from a file\n");
             s3.putObject(new PutObjectRequest(bucketName, key, createSampleFile()));
+
+            System.out.println("Adding public read");
+            s3.setObjectAcl(bucketName, key, CannedAccessControlList.PublicRead);
+
 
 
             /*
